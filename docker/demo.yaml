@@ -1,0 +1,70 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: demo-configmap
+  namespace: huwanyang
+data:
+  application.properties: |
+    env=local
+    msg=this is local env properteis.
+  mysql.properteis: |
+    mysql.hostname=10.10.10.10
+    mysql.port=3333  
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-hwy
+  namespace: huwanyang
+  labels:
+    app: demo-hwy
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: demo-hwy
+  template:
+    metadata:
+      labels:
+        app: demo-hwy
+    spec:
+      containers:
+      - name: demo
+        image: huwanyang/demo:0.0.1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: demo-config
+          mountPath: /opt/application.properties
+          subPath: application.properties
+        - name: demo-config
+          mountPath: /opt/mysql.properties 
+          subPath: mysql.properties   
+      volumes:
+      - name: demo-config
+        configMap:
+          name: demo-configmap
+          items:
+            - key: application.properties
+              path: application.properties 
+            - key: mysql.properties
+              path: mysql.properties  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-hwy
+  namespace: huwanyang
+  labels:
+    app: demo-hwy
+spec:
+  type: NodePort 
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 32123
+  selector:
+    app: demo-hwy     
