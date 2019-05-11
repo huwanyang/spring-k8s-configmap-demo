@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Desc: K8s node 资源类型 Controller
+ * Desc: Spring-boot 调用配置文件 Controller
  * Auther: wanyang3
  * Date: 2019-04-22
  * Time: 13:50

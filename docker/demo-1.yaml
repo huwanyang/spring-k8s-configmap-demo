@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: demo-configmap-1
-  namespace: huwanyang
+  namespace: wanyang3
 data:
   DEPLOYMENT_ENV: test
 ---
@@ -10,7 +10,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: demo-hwy-1
-  namespace: huwanyang
+  namespace: wanyang3
   labels:
     app: demo-hwy-1
 spec:
@@ -42,7 +42,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: demo-hwy-1
-  namespace: huwanyang
+  namespace: wanyang3
   labels:
     app: demo-hwy-1
 spec:

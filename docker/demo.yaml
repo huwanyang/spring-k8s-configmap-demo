@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: demo-configmap
-  namespace: huwanyang
+  namespace: wanyang3
 data:
   application.properties: |
     env=local
@@ -15,7 +15,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: demo-hwy
-  namespace: huwanyang
+  namespace: wanyang3
   labels:
     app: demo-hwy
 spec:
@@ -33,6 +33,7 @@ spec:
       - name: demo
         image: huwanyang/demo:0.0.1
         imagePullPolicy: IfNotPresent
+        args: ["--spring.config.location=application.properties,mysql.properties"]
         ports:
         - containerPort: 8080
         volumeMounts:
@@ -56,7 +57,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: demo-hwy
-  namespace: huwanyang
+  namespace: wanyang3
   labels:
     app: demo-hwy
 spec:
