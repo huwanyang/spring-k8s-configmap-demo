@@ -1,4 +1,4 @@
-FROM huwanyang/centos7_jdk8:v1.2
+FROM huwanyang168/centos7_jdk8:v1.2
 
 MAINTAINER huwanyang168 <huwanyang168@163.com>
 

@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: demo
-        image: huwanyang/demo:0.0.1
+        image: huwanyang168/demo:0.0.1
         imagePullPolicy: IfNotPresent
         args: ["--spring.config.location=application.properties,mysql.properties"]
         ports:
