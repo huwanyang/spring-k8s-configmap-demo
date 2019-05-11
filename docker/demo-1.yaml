@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: demo
-        image: huwanyang168/demo:0.0.2
+        image: huwanyang168/demo:0.0.1
         imagePullPolicy: IfNotPresent
         args: ["--spring.profiles.active=$(DEPLOYMENT_ENV_KEY)"]
         ports:
