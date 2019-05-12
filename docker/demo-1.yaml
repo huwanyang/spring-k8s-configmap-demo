@@ -1,4 +1,9 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: wanyang3
+---
+apiVersion: v1
 kind: ConfigMap
 metadata:
   name: demo-configmap-1
@@ -46,11 +51,11 @@ metadata:
   labels:
     app: demo-hwy-1
 spec:
-  type: NodePort 
+  type: NodePort
   ports:
     - protocol: TCP
       port: 8080
       targetPort: 8080
       nodePort: 32124
   selector:
-    app: demo-hwy-1     
+    app: demo-hwy-1
